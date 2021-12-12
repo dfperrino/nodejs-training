@@ -24,4 +24,4 @@ To view a branch: git checkout [branch-name]
 ## Useful links
 
 - [Express Generator](https://expressjs.com/es/starter/generator.html)
-- [Adding typescript to your express application](https://www.pullrequest.com/blog/intro-to-using-typescript-in-a-nodejs-express-project/)
+- [Adding typescript to your express application](https://levelup.gitconnected.com/how-to-properly-set-up-express-with-typescript-1b52570677c9)
