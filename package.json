@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/minsait-front/nodejs-training#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "eslint-plugin-jest": "^25.3.0",
     "express": "^4.17.1",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.0.3",
     "@types/morgan": "^1.9.3",

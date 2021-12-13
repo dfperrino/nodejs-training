@@ -3,6 +3,7 @@ import morgan from "morgan";
 import hotelRouter from "./routes/hotels";
 import authRouter from "./routes/auth";
 import { connect } from "mongoose";
+import cors from "cors";
 import OAuth2Server from "oauth2-server";
 import model from "./services/models/oauth";
 import helmet from "helmet";
@@ -20,7 +21,11 @@ class MyStream {
   }
 }
 const myStream = new MyStream();
-
+const opt = {
+  origin: "*",
+};
+// Then pass these options to cors:
+app.use(cors(opt));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
