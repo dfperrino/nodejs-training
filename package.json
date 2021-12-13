@@ -4,7 +4,7 @@
   "description": "The course covers basic NodeJS and Express concepts and has been taught by the Minsait Valladolid front team in December 2021.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watchAll --detectOpenHandles",
     "build": "tsc",
     "start": "tsc & node .",
     "dev": "tsc -w & nodemon ."
@@ -21,18 +21,20 @@
   "homepage": "https://github.com/minsait-front/nodejs-training#readme",
   "dependencies": {
     "debug": "~2.6.9",
-    "morgan": "~1.9.1",
+    "eslint-plugin-jest": "^25.3.0",
     "express": "^4.17.1",
-    "jest": "^27.4.3",
     "mongoose": "^6.1.0",
+    "morgan": "~1.9.1",
     "oauth2-server": "^3.1.1",
     "supertest": "^6.1.6"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.13",
+    "@types/jest": "^27.0.3",
     "@types/morgan": "^1.9.3",
     "@types/node": "^16.11.12",
+    "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
     "eslint": "^7.32.0",
@@ -42,8 +44,10 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^5.2.0",
+    "jest": "^27.4.4",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
+    "ts-jest": "^27.1.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.3"
   }
