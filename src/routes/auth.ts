@@ -22,17 +22,13 @@ export const authenticateRequest = (req: any, res: any, next: any) => {
   const response = new Response(res);
   return (app as any).oauth
     .authenticate(request, response)
-    .then(function (token: any) {
-      res.locals.user = token.user;
+    .then(function (data: any) {
+      res.locals.user = data.user;
       next();
     })
     .catch(function (err: any) {
       res.status(err.code || 500).json(err);
     });
 };
-
-router.get('/', authenticateRequest, function (req, res) {
-  res.send('Congratulations, you are in a secret area!');
-});
 
 export default router;

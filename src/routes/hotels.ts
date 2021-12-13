@@ -42,10 +42,14 @@ router.delete('/:id', (req, res) => {
 router.get('/:id', authenticateRequest, (req, res) => {
   const hotelService = new HotelService();
   const hotelId = req.params.id;
-  return hotelService
-    .searchById(hotelId)
-    .then((response) => res.json(response))
-    .catch((error) => res.send(error));
+  console.log(res.locals.user);
+  if (res.locals.user.roles.includes('admin')) {
+    return hotelService
+      .searchById(hotelId)
+      .then((response) => res.json(response))
+      .catch((error) => res.send(error));
+  }
+  return res.status(401).send();
 });
 
 export default router;

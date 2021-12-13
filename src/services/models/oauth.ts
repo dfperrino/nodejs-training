@@ -17,6 +17,12 @@ export const config: any = {
     {
       username: 'blanca94',
       password: 'password',
+      roles: ['admin'],
+    },
+    {
+      username: 'juan98',
+      password: 'password2',
+      roles: ['not_admin'],
     },
   ],
 };
@@ -45,6 +51,7 @@ export const saveToken = function (
   };
   token.user = {
     username: user.username,
+    roles: user.roles,
   };
   config.tokens.push(token);
   return token;
