@@ -1,10 +1,10 @@
-import express from 'express';
-import { Request, Response } from 'oauth2-server';
-import app from '../app';
+import express from "express";
+import { Request, Response } from "oauth2-server";
+import app from "../app";
 
 const router = express.Router();
 
-router.all('/token', (req, res) => {
+router.all("/token", (req, res) => {
   const request = new Request(req);
   const response = new Response(res);
   return (app as any).oauth

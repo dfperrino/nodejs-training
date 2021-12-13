@@ -1,13 +1,13 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 export const dbConnection = (done: any) => {
-  mongoose.connect('mongodb://localhost/hotels_test');
+  mongoose.connect("mongodb://localhost/hotels_test");
   mongoose.connection
-    .once('open', () => {
+    .once("open", () => {
       done();
     })
-    .on('error', (error) => {
-      console.warn('Error' + error);
+    .on("error", (error) => {
+      console.warn("Error" + error);
     });
 };
 export const dbDropping = (done: any) => {

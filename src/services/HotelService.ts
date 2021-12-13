@@ -1,6 +1,6 @@
-import { IHotelInfo, IHotelService } from './interfaces';
-import Hotel, { IHotel } from './models/hotel';
-import { mapHotelFromAPIToDB, mapHotelFromDBToAPI } from './utils';
+import { IHotelInfo, IHotelService } from "./interfaces";
+import Hotel, { IHotel } from "./models/hotel";
+import { mapHotelFromAPIToDB, mapHotelFromDBToAPI } from "./utils";
 
 class HotelService implements IHotelService {
   searchAll: () => Promise<void | IHotelInfo[]> = () => {

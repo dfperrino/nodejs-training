@@ -1,5 +1,5 @@
-import { IHotelInfo } from './interfaces';
-import { IHotel } from './models/hotel';
+import { IHotelInfo } from "./interfaces";
+import { IHotel } from "./models/hotel";
 
 export const mapHotelFromAPIToDB = (a: IHotelInfo): IHotel => {
   return {
