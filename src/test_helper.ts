@@ -13,12 +13,6 @@ export const dbConnection = (done: any) => {
 export const dbDropping = (done: any) => {
   const { hotels } = mongoose.connection.collections;
   hotels.drop(() => {
-    // oauthclients.drop(() => {
-    //   oauthtokens.drop(() => {
-    //     oauthusers.drop(() => {
     done();
-    //     })
-    //   })
-    // })
   });
 };
