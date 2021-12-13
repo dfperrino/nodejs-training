@@ -8,7 +8,7 @@ export const isCloudyToday: (
 ) => void = (_req, res, next) => {
   axios
     .get(
-      'https://api.openweathermap.org/data/2.5/weather?q=Valladolid&appid=fdf472d5b9d20c162af38802b0b86d82'
+      `https://api.openweathermap.org/data/2.5/weather?q=Valladolid&appid=${process.env.WEATHER_API_KEY}`
     )
     .then((response) => {
       if (
