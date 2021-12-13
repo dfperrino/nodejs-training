@@ -31,14 +31,37 @@ describe('Test hotels CRUD', () => {
         done();
       });
   });
-  it('should return hotel by Id', (done: any) => {
+  // it('should return hotel by Id', (done: any) => {
+  //   const id = hotelSea.id;
+  //   supertest(app)
+  //     .get(`/api/hotels/${id}`)
+  //     .then((response) => {
+  //       expect(response.statusCode).toBe(200);
+  //       expect(response.body.id).toBe(id);
+  //       done();
+  //     });
+  // });
+
+  it('should return hotel by Id', (done) => {
     const id = hotelSea.id;
     supertest(app)
-      .get(`/api/hotels/${id}`)
-      .then((response) => {
-        expect(response.statusCode).toBe(200);
-        expect(response.body.id).toBe(id);
-        done();
+      .post('/oauth/token')
+      .set('Authorization', 'Basic YXBwbGljYXRpb246c2VjcmV0')
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .send({
+        grant_type: 'password',
+        username: 'blanca94',
+        password: 'password',
+      })
+      .then((resp) => {
+        supertest(app)
+          .get(`/api/hotels/${id}`)
+          .set('Authorization', `Bearer ${resp.body.accessToken}`)
+          .then((response) => {
+            expect(response.statusCode).toBe(200);
+            expect(response.body.id).toBe(id);
+            done();
+          });
       });
   });
 
