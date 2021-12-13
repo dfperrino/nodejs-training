@@ -1,5 +1,6 @@
 import express from 'express';
 import HotelService from '../services/HotelService';
+import { authenticateRequest } from './auth';
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -38,7 +39,7 @@ router.delete('/:id', (req, res) => {
     .catch(() => res.send('Error'));
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticateRequest, (req, res) => {
   const hotelService = new HotelService();
   const hotelId = req.params.id;
   return hotelService
