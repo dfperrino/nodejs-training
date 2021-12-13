@@ -1,9 +1,9 @@
-import express from 'express';
-import HotelService from '../services/HotelService';
-import { authenticateRequest } from './auth';
+import express from "express";
+import HotelService from "../services/HotelService";
+import { authenticateRequest } from "./auth";
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   const hotelService = new HotelService();
   return hotelService
     .searchAll()
@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     .catch((error) => res.send(error));
 });
 
-router.post('/', (req, res) => {
+router.post("/", (req, res) => {
   const hotelService = new HotelService();
   const hotelProps = req.body;
   return hotelService
@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
     .catch((error) => res.send(error));
 });
 
-router.put('/:id', (req, res) => {
+router.put("/:id", (req, res) => {
   const hotelService = new HotelService();
   const hotelId = req.params.id;
   const hotelProps = req.body;
@@ -30,26 +30,26 @@ router.put('/:id', (req, res) => {
     .catch((error) => res.send(error));
 });
 
-router.delete('/:id', (req, res) => {
+router.delete("/:id", (req, res) => {
   const hotelService = new HotelService();
   const hotelId = req.params.id;
   return hotelService
     .delete(hotelId)
     .then(() => res.json({}))
-    .catch(() => res.send('Error'));
+    .catch(() => res.send("Error"));
 });
 
-router.get('/:id', authenticateRequest, (req, res) => {
+router.get("/:id", authenticateRequest, (req, res) => {
   const hotelService = new HotelService();
   const hotelId = req.params.id;
   console.log(res.locals.user);
-  if (res.locals.user.roles.includes('admin')) {
+  if (res.locals.user.roles.includes("admin")) {
     return hotelService
       .searchById(hotelId)
       .then((response) => res.json(response))
       .catch((error) => res.send(error));
   }
-  return res.status(401).send();
+  return res.status(401).json({ message: "Unauthorized" });
 });
 
 export default router;
