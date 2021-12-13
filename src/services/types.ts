@@ -5,16 +5,6 @@ export interface IBasicUserInfo {
   favouriteColors: string[];
 }
 
-export interface UserInfoResponse {
-  name: string;
-  surname: string;
-  id: number;
-  colors: string[];
-  height: number;
-  weight: number;
-  email: string;
-}
-
 export interface IUserService {
   getUserInfo: () => Promise<void | IBasicUserInfo>;
 }
