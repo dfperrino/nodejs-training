@@ -6,6 +6,7 @@ import swaggerUi from 'swagger-ui-express';
 import WebSocket from 'ws';
 import { RegisterRoutes } from '../routes/routes';
 import { isCloudyToday } from './middlewares/isCloudyToday';
+import sseRoute from './sseRoute';
 
 const app = express();
 
@@ -34,10 +35,12 @@ wss.on('connection', (ws) => {
   ws.on('message', (data) => {
     console.log('message: %s', data);
   });
-  app.on('myCustomMsg', (data) => {
+  app.on('myCustomWSMsg', (data) => {
     ws.send(data);
   });
 });
+
+app.use('/sse', sseRoute);
 
 /* http server */
 const httpServer = app.listen(3000, () => {

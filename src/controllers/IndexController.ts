@@ -16,12 +16,22 @@ export class IndexController extends Controller {
   }
 
   @Get('/ws-message')
-  sendMessage(@Request() request: ExpressRequest): void {
+  sendWSMessage(@Request() request: ExpressRequest): void {
     setTimeout(() => {
       request.app.emit(
-        'myCustomMsg',
+        'myCustomWSMsg',
         JSON.stringify({ freemem: os.freemem(), loadavg: os.loadavg()[0] })
       );
+    }, 2500);
+  }
+
+  @Get('/sse-message')
+  sendSSEMessage(@Request() request: ExpressRequest): void {
+    setTimeout(() => {
+      request.app.emit('myCustomSSEMsg', {
+        freemem: os.freemem(),
+        loadavg: os.loadavg()[0],
+      });
     }, 2500);
   }
 }

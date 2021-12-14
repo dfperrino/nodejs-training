@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>SSE test</title>
+    <script>
+      const client = new EventSource('/sse');
+
+      client.onopen = () => console.log('open');
+      client.onmessage = (msg) => {
+        console.log(msg);
+        const realMessage = JSON.parse(msg.data);
+        document.getElementById('box').innerHTML =
+          '<ul><li>Free Mem: ' +
+          realMessage.freemem +
+          '</li><li>Load avg: ' +
+          realMessage.loadavg +
+          '</li></ul>';
+      };
+      function sendMessage() {
+        client.send('Hello sse server');
+      }
+    </script>
+  </head>
+  <body>
+    <div>Welcome to sse</div>
+    <div id="box" style="border: 1px dashed red"></div>
+  </body>
+</html>
