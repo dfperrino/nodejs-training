@@ -1,0 +1,1 @@
+docker run --detach --name node-training-mariadb --env MARIADB_USER=minsait --env MARIADB_PASSWORD=minsait --env MARIADB_ROOT_PASSWORD=minsait -p3306:3306 mariadb:latest

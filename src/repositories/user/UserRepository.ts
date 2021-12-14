@@ -1,12 +1,17 @@
-import axios from 'axios';
+import { Connection, Repository } from 'typeorm';
 import { UserEntity } from './UserEntity';
 
-export class UserRepository {
-  static getUser: () => Promise<void | UserEntity> = () => {
-    return axios
-      .get<UserEntity>(
-        'https://run.mocky.io/v3/c85781ec-af93-4ea2-b7e2-34de7be5aad5'
-      )
-      .then((resp) => resp.data);
+export interface IUserRepository {
+  getUser: () => Promise<void | UserEntity>;
+}
+export class UserRepository implements IUserRepository {
+  private repository: Repository<UserEntity>;
+
+  constructor(connection: Connection) {
+    this.repository = connection.getRepository(UserEntity);
+  }
+
+  getUser: () => Promise<void | UserEntity> = () => {
+    return this.repository.findOne();
   };
 }
