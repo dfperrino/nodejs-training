@@ -1,19 +1,17 @@
-import { Connection, Repository } from 'typeorm';
 import { db } from '../db';
+import { User, UserModel } from './User';
 import { UserEntity } from './UserEntity';
 export interface IUserRepository {
-  getUser: () => Promise<void | UserEntity>;
+  getUser: () => Promise<void | User>;
   getRawUser: () => Promise<any>;
 }
 export class UserRepository implements IUserRepository {
-  private repository: Repository<UserEntity>;
-
-  constructor(connection: Connection) {
-    this.repository = connection.getRepository(UserEntity);
-  }
-
-  getUser: () => Promise<void | UserEntity> = () => {
-    return this.repository.findOne();
+  getUser: () => Promise<void | User> = () => {
+    return UserModel.find().then((data) => {
+      if (data) {
+        return data[0];
+      }
+    });
   };
 
   getRawUser: () => Promise<void | UserEntity> = () => {

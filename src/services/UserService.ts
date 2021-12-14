@@ -1,4 +1,3 @@
-import { Connection } from 'typeorm';
 import {
   IUserRepository,
   UserRepository,
@@ -8,14 +7,14 @@ import { IBasicUserInfo, IUserService } from './types';
 export class UserService implements IUserService {
   private userRepository: IUserRepository;
 
-  constructor(connection: Connection) {
-    this.userRepository = new UserRepository(connection);
+  constructor() {
+    this.userRepository = new UserRepository();
   }
 
   getUserInfo: () => Promise<void | IBasicUserInfo> = () => {
     console.log('hola, estoy procesando');
     return this.userRepository
-      .getRawUser()
+      .getUser()
       .then((data) => {
         if (data) {
           return {

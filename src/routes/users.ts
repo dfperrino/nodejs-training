@@ -1,12 +1,11 @@
 import express from 'express';
-import { Connection } from 'typeorm';
 import { UserService } from '../services/UserService';
 
-const controller = (connection: Connection) => {
+const controller = () => {
   const router = express.Router();
 
   router.get('/', (_req, res) => {
-    const userService = new UserService(connection);
+    const userService = new UserService();
     userService
       .getUserInfo()
       .then((response) => {
