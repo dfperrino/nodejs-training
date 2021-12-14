@@ -16,5 +16,5 @@ export interface UserInfoResponse {
 }
 
 export interface IUserService {
-  getUserInfo: () => Promise<void | IBasicUserInfo>;
+  getUserInfo: () => Promise<IBasicUserInfo>;
 }

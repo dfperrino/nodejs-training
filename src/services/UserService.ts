@@ -2,7 +2,7 @@ import axios from 'axios';
 import { IBasicUserInfo, IUserService, UserInfoResponse } from './types';
 
 export class UserService implements IUserService {
-  getUserInfo: () => Promise<void | IBasicUserInfo> = () => {
+  getUserInfo: () => Promise<IBasicUserInfo> = () => {
     console.log('hola, estoy procesando');
     return axios
       .get<UserInfoResponse>(
@@ -17,9 +17,11 @@ export class UserService implements IUserService {
             favouriteColors: response.data.colors,
           };
         }
+        return null;
       })
       .catch((error) => {
         console.error(error);
+        return null;
       });
   };
 }
