@@ -3,6 +3,7 @@ import express from 'express';
 import logger from 'morgan';
 import path from 'path';
 import swaggerUi from 'swagger-ui-express';
+import WebSocket from 'ws';
 import { RegisterRoutes } from '../routes/routes';
 import { isCloudyToday } from './middlewares/isCloudyToday';
 
@@ -26,6 +27,24 @@ app.use(
 
 RegisterRoutes(app);
 
-app.listen(3000, () => {
+/* Definición websocket server */
+const wss = new WebSocket.Server({ noServer: true });
+wss.on('connection', (ws) => {
+  console.log('Websocket server is up!');
+  ws.on('message', (data) => {
+    console.log('message: %s', data);
+  });
+  app.on('myCustomMsg', (data) => {
+    ws.send(data);
+  });
+});
+
+/* http server */
+const httpServer = app.listen(3000, () => {
   console.log('The application is listening on port 3000!');
+});
+httpServer.on('upgrade', (request, socket, head) => {
+  wss.handleUpgrade(request, socket, head, (socket) => {
+    wss.emit('connection', socket, request);
+  });
 });

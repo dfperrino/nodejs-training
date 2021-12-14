@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Websocket test</title>
+    <script>
+      const client = new WebSocket('ws://localhost:3000');
+
+      client.onmessage = (msg) => {
+        console.log(msg);
+        const realMessage = JSON.parse(msg.data);
+        document.getElementById('box').innerHTML =
+          '<ul><li>Free Mem: ' +
+          realMessage.freemem +
+          '</li><li>Load avg: ' +
+          realMessage.loadavg +
+          '</li></ul>';
+      };
+      function sendMessage() {
+        client.send('Hello websocket server');
+      }
+    </script>
+  </head>
+  <body>
+    <div>Welcome to websockets</div>
+    <div id="box" style="border: 1px dashed red"></div>
+    <button onclick="sendMessage()">Send message</button>
+  </body>
+</html>
