@@ -15,7 +15,7 @@ export class UserService implements IUserService {
   getUserInfo: () => Promise<void | IBasicUserInfo> = () => {
     console.log('hola, estoy procesando');
     return this.userRepository
-      .getUser()
+      .getRawUser()
       .then((data) => {
         if (data) {
           return {
