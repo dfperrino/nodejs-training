@@ -36,7 +36,7 @@ wss.on('connection', (ws) => {
     console.log('message: %s', data);
   });
   app.on('myCustomWSMsg', (data) => {
-    ws.send(data);
+    ws.send(JSON.stringify(data));
   });
 });
 

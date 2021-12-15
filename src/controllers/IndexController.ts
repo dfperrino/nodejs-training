@@ -18,10 +18,10 @@ export class IndexController extends Controller {
   @Get('/ws-message')
   sendWSMessage(@Request() request: ExpressRequest): void {
     setTimeout(() => {
-      request.app.emit(
-        'myCustomWSMsg',
-        JSON.stringify({ freemem: os.freemem(), loadavg: os.loadavg()[0] })
-      );
+      request.app.emit('myCustomWSMsg', {
+        freemem: os.freemem(),
+        loadavg: os.loadavg()[0],
+      });
     }, 2500);
   }
 

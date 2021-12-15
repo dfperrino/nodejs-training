@@ -13,6 +13,9 @@
           '</li><li>Load avg: ' +
           realMessage.loadavg +
           '</li></ul>';
+        document.getElementById('raw').innerHTML = JSON.stringify(
+          JSON.parse(msg.data)
+        );
       };
       function sendMessage() {
         client.send('Hello websocket server');
@@ -21,7 +24,8 @@
   </head>
   <body>
     <div>Welcome to websockets</div>
-    <div id="box" style="border: 1px dashed red"></div>
+    <div id="box" style="border: 1px dashed red; min-height: 14px"></div>
+    <div id="raw" style="border: 1px dashed blue; min-height: 14px"></div>
     <button onclick="sendMessage()">Send message</button>
   </body>
 </html>
